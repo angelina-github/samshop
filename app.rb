@@ -30,3 +30,7 @@ get '/download/*.*' do
   # matches /download/path/to/file.xml
   params['splat'] # => ["path/to/file", "xml"]
 end
+
+get '/success' do
+  "Your payment has processed successfully."
+end
