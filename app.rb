@@ -1,7 +1,7 @@
 require 'sinatra'
 
 get '/' do
-  "This is the home page."
+  erb :home
 end
 
 get '/test' do
@@ -31,6 +31,13 @@ get '/download/*.*' do
   params['splat'] # => ["path/to/file", "xml"]
 end
 
+#get '/success/:last4/:amount' do
 get '/success' do
-  "Your payment has processed successfully."
+  "Your card ending in #{params['last4']} has been charged #{params['amount']} cents."
+end
+
+post '/pay' do
+  "The data sent to the /pay POST route is: "
+  p params
+  redirect '/success'
 end
