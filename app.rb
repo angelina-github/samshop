@@ -11,7 +11,9 @@ get '/' do
 
   # query the products table and print the result
   puts "Database query results:"
-  p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  @products = db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  #p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  p @products
 
   # close database connection
   db.close
