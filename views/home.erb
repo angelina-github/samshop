@@ -6,6 +6,16 @@
   </head>
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
-    <p><%= @products %></p>
-  </body>
+    <form action="/pay" method="POST">
+      <p><input type="text" name="email" placeholder="email"></p>
+      <% @products.each do |product| %>
+        <p><input type="radio"
+          name= 'productID'
+          value= "<%= product['id'] %>"></p>
+          <p>ITEM: <%= product['item'] %></p>
+          <p>STORE: <%= product['store'] %></p>
+          <p>QUANTITY: <%= product['quantity'] %></p>
+      <% end %>
+      <button type="submit">Pay now</button>
+    </form>
 </html>
