@@ -14,16 +14,22 @@
   </head>
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
-    <form action="/pay" method="POST">
+    <p> name=js-output </p>
+    <% @products.each do |product| %>
+      <p><input type="radio"
+        name= 'productID'
+        value= "<%= product['id'] %>"></p>
+        <p>ITEM: <%= product['item'] %></p>
+        <p>STORE: <%= product['store'] %></p>
+        <p>QUANTITY: <%= product['quantity'] %></p>
+    <% end %>
+    <form id="payment-form" action="/pay" method="POST">
       <p><input type="text" name="email" placeholder="email"></p>
-      <% @products.each do |product| %>
-        <p><input type="radio"
-          name= 'productID'
-          value= "<%= product['id'] %>"></p>
-          <p>ITEM: <%= product['item'] %></p>
-          <p>STORE: <%= product['store'] %></p>
-          <p>QUANTITY: <%= product['quantity'] %></p>
-      <% end %>
-      <button type="submit">Pay now</button>
+      <p><input id="card-number" type="text" placeholder="card number"></p>
+      <p><input id="card-exp-month" type="text" placeholder="card expiration month"></p>
+      <p><input id="card-exp-year" type="text" placeholder="card expiration year"></p>
+      <p><input id="card-cvc" type="text" placeholder="card cvc"></p>
+
+      <button id="pay-now" type="submit">Pay now</button>
     </form>
 </html>
