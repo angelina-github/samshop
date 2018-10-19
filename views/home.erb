@@ -14,7 +14,7 @@
   </head>
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
-    <p> name=js-output </p>
+
     <% @products.each do |product| %>
       <p><input type="radio"
         name= 'productID'
@@ -23,6 +23,7 @@
         <p>STORE: <%= product['store'] %></p>
         <p>QUANTITY: <%= product['quantity'] %></p>
     <% end %>
+    <p id="js-output"> </p>
     <form id="payment-form" action="/pay" method="POST">
       <p><input type="text" name="email" placeholder="email"></p>
       <p><input id="card-number" type="text" placeholder="card number"></p>
