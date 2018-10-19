@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <meta charset="utf-8">
     <title></title>
+    <script>
+      $(document).ready(function() {
+        console.log("This script is working!");
+        Stripe.setPublishableKey('pk_test_UzTsy4YZ6cwJ5pF2YqbdZDWk');
+        });
+    </script>
   </head>
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
