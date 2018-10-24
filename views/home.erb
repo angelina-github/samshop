@@ -14,6 +14,18 @@
           console.log("Response from Stripe token call:");
           console.log(response);
           // TODO: check for any input validation errors
+          if (response.error) {
+
+              // Show the errors on the form
+              $('#payment-errors').text(response.error.message);
+
+              // Re-enable submission
+              $("#pay-now").attr('disabled',false);
+
+          } else {
+              // TODO: add the token info to the form as a hidden field
+              // TODO: submit the form
+          }
           // TODO: if there are errors, display them at the top of the form
           // TODO: if there are not errors, add the token info to the form as a hidden field
           // TODO: submit the form
@@ -50,7 +62,7 @@
         <p>STORE: <%= product['store'] %></p>
         <p>QUANTITY: <%= product['quantity'] %></p>
     <% end %>
-    <p id="js-output"> </p>
+    <p id="payment-errors"> </p>
     <form id="payment-form" action="/pay" method="post">
       <p><input type="text" name="email" placeholder="email"></p>
       <p><input id="card-number" type="text" placeholder="card number"></p>
