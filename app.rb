@@ -59,3 +59,7 @@ post '/pay' do
   p params
   redirect '/success'
 end
+
+post '/add' do
+  "This is the add page."
+end
