@@ -71,7 +71,7 @@ post '/add' do
 #  db.execute("INSERT INTO shopping (id, item, quantity, store, section) VALUES #{params['id']} #{params['item']}
   # @test = db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES (#{params['item']},  #{params['quantity']}, #{params['store']}, #{params['section']})")
   # query the products table and print the result
-  db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
+  # db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
   puts "Database query results:"
   @products = db.execute("SELECT id, item, quantity, store, section FROM shopping;")
   #p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
