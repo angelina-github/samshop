@@ -67,14 +67,14 @@
     <% end %>
 
     <form id="add-item" action="/add" method="post">
-      <p><input type="text" name="item" placeholder="item"></p>
-      <p><input id="quantity" type="text" placeholder="quantity"></p>
-      <p><input id="store" type="text" placeholder="store"></p>
-      <p><input id="section" type="text" placeholder="section"></p>
+      <p><input id="add-item" name="item" type="text" placeholder="item"></p>
+      <p><input id="add-quantity" name="quantity" type="number" placeholder="quantity"></p>
+      <p><input id="add-store" name="store" type="text" placeholder="store"></p>
+      <p><input id="add-section" name="section" type="text" placeholder="section"></p>
 
       <button id="add-button" type="submit">Add Item</button>
     </form>
-    
+
     <p id="payment-errors"> </p>
     <form id="payment-form" action="/pay" method="post">
       <p><input type="text" name="email" placeholder="email"></p>
