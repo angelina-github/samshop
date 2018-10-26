@@ -59,3 +59,28 @@ post '/pay' do
   p params
   redirect '/success'
 end
+
+post '/add' do
+  "This is the add page."
+  # connect to the database
+  db = SQLite3::Database.open('store.db')
+
+  # configure results to be returned as as an array of hashes instead of nested arrays
+  db.results_as_hash = true
+  p params
+#  db.execute("INSERT INTO shopping (id, item, quantity, store, section) VALUES #{params['id']} #{params['item']}
+  # @test = db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES (#{params['item']},  #{params['quantity']}, #{params['store']}, #{params['section']})")
+  # query the products table and print the result
+  db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
+  puts "Database query results:"
+  @products = db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  #p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  p @products
+  p @test
+
+  # close database connection
+  db.close
+
+  erb :home
+
+end
