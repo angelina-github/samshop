@@ -57,26 +57,30 @@
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
 
-    <% @products.each do |product| %>
-      <p><input type="radio"
-        name= 'productID'
-        value= "<%= product['id'] %>"></p>
-        <p>ITEM: <%= product['item'] %></p>
-        <p>STORE: <%= product['store'] %></p>
-        <p>QUANTITY: <%= product['quantity'] %></p>
-    <% end %>
-
     <form id="add-item" action="/add" method="post">
       <p><input id="add-item" name="item" type="text" placeholder="item"></p>
       <p><input id="add-quantity" name="quantity" type="number" placeholder="quantity"></p>
       <p><input id="add-store" name="store" type="text" placeholder="store"></p>
       <p><input id="add-section" name="section" type="text" placeholder="section"></p>
 
+<%# same code as above %>
+      <% @products.each do |product| %>
+        <p><input type="checkbox"
+          name= 'add[]'
+          value= "<%= product['id'] %>"></p>
+          <p>ITEM: <%= product['item'] %></p>
+          <p>STORE: <%= product['store'] %></p>
+          <p>QUANTITY: <%= product['quantity'] %></p>
+
+      <% end %>
+
+
       <button id="add-button" type="submit">Add Item</button>
     </form>
 
     <p id="payment-errors"> </p>
     <form id="payment-form" action="/pay" method="post">
+
 
       <p><input type="text" name="email" placeholder="email"></p>
       <p><input maxlength="16" id="card-number" type="text" placeholder="card number"></p>
@@ -87,5 +91,10 @@
       <button id = "pay-button" type="submit" class="btn btn-danger"> Click here to pay </button>
       <p><img src="https://media.giphy.com/media/tM2TajKE8lsMo/giphy.gif"></p>
       <p><img src="https://media.giphy.com/media/l0G16KpPfcmdN1G1O/giphy.gif"></p>
+<br>
+      <label class="container">Test
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
     </form>
 </html>
