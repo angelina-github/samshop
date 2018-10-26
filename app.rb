@@ -74,7 +74,7 @@ post '/add' do
   # db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
   puts "Database query results:"
   @products = db.execute("SELECT id, item, quantity, store, section FROM shopping;")
-  #p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
+  p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
   p @products
   p @test
 
