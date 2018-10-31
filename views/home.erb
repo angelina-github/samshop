@@ -57,16 +57,20 @@
   <body>
     <h1> Welcome to The Shopping List Builder!</h1>
 
-    <p> Select by item, store, and section: </p>
-
     <form id="add-item" action="/add" method="post">
+      <p><input id="add-item" name="item" type="text" placeholder="item"></p>
+      <p><input id="add-quantity" name="quantity" type="number" placeholder="quantity"></p>
+      <p><input id="add-store" name="store" type="text" placeholder="store"></p>
+      <p><input id="add-section" name="section" type="text" placeholder="section"></p>
+
+    <button id="add-button" type="submit">Add Item</button>
+
+    <p> Select items: </p>
 
       <% @products.each do |product| %>
         <p><input type="checkbox" name="product['item']" value="<%= product['id'] %>">
         <%= product['item'].capitalize %>, <%= product['store'].capitalize %>, <%= product['section'].capitalize %></p>
       <% end # product loop %>
-
-      <button id="add-button" type="submit">Add Items</button>
 
       <button id="sort-button" type="submit">Sort Items</button>
     </form>
