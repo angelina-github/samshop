@@ -18,6 +18,7 @@ get '/' do
   # close database connection
   db.close
 
+# make available to home.erb
   erb :home
 
 end
@@ -68,19 +69,35 @@ post '/add' do
   # configure results to be returned as as an array of hashes instead of nested arrays
   db.results_as_hash = true
   p params
-#  db.execute("INSERT INTO shopping (id, item, quantity, store, section) VALUES #{params['id']} #{params['item']}
-  # @test = db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES (#{params['item']},  #{params['quantity']}, #{params['store']}, #{params['section']})")
+
   # query the products table and print the result
-  # db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
-  puts "Database query results:"
-  @products = db.execute("SELECT id, item, quantity, store, section FROM shopping;")
-  p db.execute("SELECT id, item, quantity, store, section FROM shopping;")
-  p @products
-  p @test
+  db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES ('#{params['item']}', '#{params['quantity']}', '#{params['store']}', '#{params['section']}')")
+  # try parameterized SQL calls db.execute("INSERT INTO shopping (item, quantity, store, section) VALUES (?, ?, ?, ?, ?)",[#{params['item']}, #{params['quantity']}, #{params['store']}, #{params['section']}])
 
   # close database connection
   db.close
 
-  erb :home
+  redirect '/'
 
+end
+
+post '/sort' do
+  db = SQLite3::Database.open('store.db')
+
+  # configure results to be returned as as an array of hashes instead of nested arrays
+  db.results_as_hash = true
+  results = []
+  params['add'].each do |item_id|
+    found = db.execute("SELECT * FROM shopping WHERE id=#{item_id}")
+    results.push(found[0])
+  end
+  @results = results
+  db.close
+  erb :sorted_list
+#  redirect '/sorted_list'
+
+end
+
+get '/sorted_list' do
+  erb :sorted_list
 end

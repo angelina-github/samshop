@@ -62,17 +62,37 @@
       <p><input id="add-quantity" name="quantity" type="number" placeholder="quantity"></p>
       <p><input id="add-store" name="store" type="text" placeholder="store"></p>
       <p><input id="add-section" name="section" type="text" placeholder="section"></p>
+      <button id="add-button" type="submit">Add Item</button>
 
+<<<<<<< Updated upstream
     <button id="add-button" type="submit">Add Item</button>
 
     <p> Select items: </p>
+=======
+<%# same code as above %>
+>>>>>>> Stashed changes
 
       <% @products.each do |product| %>
         <p><input type="checkbox" name="product['item']" value="<%= product['id'] %>">
         <%= product['item'].capitalize %>, <%= product['store'].capitalize %>, <%= product['section'].capitalize %></p>
       <% end # product loop %>
 
+<<<<<<< Updated upstream
       <button id="sort-button" type="submit">Sort Items</button>
+=======
+    </form>
+    <form id="sort-list" action="/sort" method="post">
+      <% @products.each do |product| %>
+      <p><input type="checkbox"
+        name="add[]"
+        value="<%= product['id'] %>"></p>
+        <p>ITEM: <%= product['item'] %></p>
+        <p>STORE: <%= product['store'] %></p>
+        <p>QUANTITY: <%= product['quantity'] %></p>
+
+        <% end %>
+      <button id="sort-button" type="submit">Sort List</button>
+>>>>>>> Stashed changes
     </form>
 
     <p id="payment-errors"> </p>
