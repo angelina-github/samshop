@@ -12,7 +12,8 @@
   </head>
   <body>
     <h1> Here's Your Shopping List!</h1>
-<p> <%=@results%>
-</p>
+   <% @results.each do |shopping_item| %>
+    <p> <%=shopping_item['quantity']%> <%=shopping_item['item']%> from <%=shopping_item['store']%>'s <%=shopping_item['section']%> section</p>
+   <%end%>
 </body>
 </html>

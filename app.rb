@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sqlite3'
+Stripe.api_key = 'sk_test_kwT7V11lBilkE03vt6WvR3B3'
 
 get '/' do
 
@@ -23,32 +24,6 @@ get '/' do
 
 end
 
-get '/test' do
-  "This is the test page."
-end
-
-get '/hello/:name' do |n|
-  # matches "GET /hello/foo" and "GET /hello/bar"
-  # params['name'] is 'foo' or 'bar'
-  # n stores params['name']
-  "Hello #{n} #{n}!"
-end
-
-get '/hello/:name' do
-  # matches "GET /hello/foo" and "GET /hello/bar"
-  # params['name'] is 'foo' or 'bar'
-  "Hello #{params['name']}!"
-end
-
-get '/say/*/to/*' do
-  # matches /say/hello/to/world
-  params['splat'] # => ["hello", "world"]
-end
-
-get '/download/*.*' do
-  # matches /download/path/to/file.xml
-  params['splat'] # => ["path/to/file", "xml"]
-end
 
 #get '/success/:last4/:amount' do
 get '/success' do
@@ -92,6 +67,7 @@ post '/sort' do
     results.push(found[0])
   end
   @results = results
+
   db.close
   erb :sorted_list
 #  redirect '/sorted_list'
@@ -100,4 +76,31 @@ end
 
 get '/sorted_list' do
   erb :sorted_list
+end
+
+get '/test' do
+  "This is the test page."
+end
+
+get '/hello/:name' do |n|
+  # matches "GET /hello/foo" and "GET /hello/bar"
+  # params['name'] is 'foo' or 'bar'
+  # n stores params['name']
+  "Hello #{n} #{n}!"
+end
+
+get '/hello/:name' do
+  # matches "GET /hello/foo" and "GET /hello/bar"
+  # params['name'] is 'foo' or 'bar'
+  "Hello #{params['name']}!"
+end
+
+get '/say/*/to/*' do
+  # matches /say/hello/to/world
+  params['splat'] # => ["hello", "world"]
+end
+
+get '/download/*.*' do
+  # matches /download/path/to/file.xml
+  params['splat'] # => ["path/to/file", "xml"]
 end
